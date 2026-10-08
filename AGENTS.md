@@ -73,3 +73,11 @@ Use the 60-30-10 balance: mostly light backgrounds, strong maroon/wine structure
 - [ ] Gallery: pending placeholder
 - [ ] Core Team: pending placeholder
 - [ ] Contact: pending placeholder
+
+## Layout system
+
+- **Layout**: Use ONE Container component with max-width max-w-[92rem] and consistent horizontal padding: px-6 md:px-12 xl:px-24. Use a standard 12-column grid (grid-cols-1 md:grid-cols-12) where appropriate for complex sections.
+- **Spacing**: Follow a 4/8px rhythm. Standard section padding is py-20 md:py-32 (or py-16 md:py-24). Remove arbitrary mt-14 or py-28.
+- **Fluid Type Scale**: 
+  - Display: 	ext-[clamp(3rem,8vw,8rem)]`n  - H1: 	ext-[clamp(2.5rem,6vw,5.5rem)]`n  - H2: 	ext-[clamp(2rem,5vw,4.5rem)]`n  - H3: 	ext-[clamp(1.5rem,3vw,3rem)]`n  - Body: base 	ext-base or 	ext-lg`n- **Scroll & Viewport**: Add scroll-mt-24 to all anchor targets. Use min-h-[100svh] or min-h-svh instead of 100vh.
+- **Overflow**: Use overflow-x: clip only as a last resort on the ody or wrapping main.

@@ -86,7 +86,7 @@ export function EventFlow() {
         })}
       </div>
 
-      <div className="min-w-0">
+      <div className="min-w-0 min-h-[45rem] lg:min-h-[55rem]">
         <AnimatePresence mode="wait">
           <motion.div
             key={active.id}
@@ -117,7 +117,7 @@ export function EventFlow() {
               {active.items.map((item, index) => (
                 <li
                   key={`${item.time}-${item.title}`}
-                  className="grid gap-4 border-b border-border py-7 last:border-b-0 md:grid-cols-[10rem_1fr]"
+                  className="grid grid-cols-[6rem_1fr] gap-4 border-b border-border py-7 last:border-b-0 sm:grid-cols-[8rem_1fr] md:grid-cols-[10rem_1fr]"
                 >
                   <div className="relative">
                     <span className="font-display text-2xl font-bold uppercase leading-none text-accent">

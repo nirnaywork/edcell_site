@@ -26,14 +26,7 @@ const icons = {
   award: Award
 };
 
-const expectLayouts = [
-  "sm:col-span-2 lg:col-span-3",
-  "lg:col-span-2",
-  "lg:col-span-2 lg:row-span-2",
-  "lg:col-span-3",
-  "lg:col-span-2",
-  "sm:col-span-2 lg:col-span-3"
-];
+
 
 export default function Home() {
   const heroEventParts = homeContent.hero.eventLine.split("|").map((part) => part.trim());
@@ -46,13 +39,13 @@ export default function Home() {
           className="absolute left-1/2 top-20 -z-10 h-[40rem] w-[40rem] -translate-x-1/2 rounded-full border border-border/60 opacity-35"
           aria-hidden="true"
         />
-        <Container className="grid min-h-[calc(100svh-4.75rem)] gap-10 py-12 sm:py-16 lg:grid-cols-[0.92fr_0.08fr_0.72fr] lg:items-center lg:py-20">
-          <div className="min-w-0 lg:col-span-2">
+        <Container className="grid min-h-[calc(100svh-4.75rem)] gap-10 py-16 sm:py-20 lg:grid-cols-12 lg:items-center lg:py-24">
+          <div className="min-w-0 lg:col-span-7">
             <Reveal>
               <p className="mb-5 border-l border-accent pl-4 text-xs font-black uppercase tracking-[0.28em] text-accent">
                 {homeContent.hero.badge}
               </p>
-              <h1 className="font-display text-[clamp(3.1rem,14vw,10rem)] font-bold uppercase leading-[0.78] tracking-[-0.055em] text-text text-balance lg:text-[clamp(7rem,12vw,12.5rem)] xl:text-[clamp(8rem,11vw,13rem)]">
+              <h1 className="font-display text-[clamp(3.5rem,9vw,9rem)] font-bold uppercase leading-[0.78] tracking-[-0.05em] text-text text-balance">
                 {homeContent.hero.title}
               </h1>
             </Reveal>
@@ -82,17 +75,17 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.16} className="min-w-0 lg:col-start-3">
+          <Reveal delay={0.16} className="min-w-0 lg:col-start-9 lg:col-span-4">
             <Countdown targetDate={siteConfig.eventDate} />
           </Reveal>
         </Container>
         <Marquee />
       </section>
 
-      <section className="relative overflow-hidden bg-bg py-20 sm:py-28">
+      <section className="relative overflow-hidden bg-bg py-20 md:py-32">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_0.18fr_0.68fr] lg:items-start">
-            <Reveal className="lg:col-span-2">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+            <Reveal className="lg:col-span-8">
               <SectionNumber number="01" />
               <SectionHeading
                 label={homeContent.about.label}
@@ -100,7 +93,7 @@ export default function Home() {
                 subtitle={homeContent.about.description}
               />
             </Reveal>
-            <Reveal delay={0.12}>
+            <Reveal delay={0.12} className="lg:col-span-4">
               <PhotoSlot label="Event photos coming soon" />
             </Reveal>
           </div>
@@ -110,7 +103,7 @@ export default function Home() {
               <Reveal
                 key={stat.label}
                 delay={index * 0.04}
-                className="bg-surface p-6 sm:p-8"
+                className="bg-surface p-6 text-left sm:p-8"
               >
                 <p className="font-display text-[clamp(3rem,7vw,6rem)] font-bold uppercase leading-none tracking-[-0.04em] text-text">
                   {stat.value}
@@ -124,10 +117,10 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="bg-dark py-20 sm:py-28">
+      <section className="bg-dark py-20 md:py-32">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[0.36fr_0.64fr]">
-            <Reveal>
+          <div className="grid gap-12 lg:grid-cols-12">
+            <Reveal className="lg:col-span-4">
               <SectionNumber number="02" />
               <SectionHeading
                 label={homeContent.expect.label}
@@ -136,14 +129,14 @@ export default function Home() {
               />
             </Reveal>
 
-            <div className="grid auto-rows-[minmax(13rem,auto)] gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+            <div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:col-span-8 lg:grid-cols-2">
               {homeContent.expect.cards.map((item, index) => {
                 const Icon = icons[item.icon] || Lightbulb;
                 return (
                   <Reveal
                     key={item.title}
                     delay={index * 0.045}
-                    className={`group relative overflow-hidden bg-surface p-6 transition duration-300 hover:bg-surface-2 ${expectLayouts[index]}`}
+                    className="group relative flex h-full flex-col overflow-hidden bg-surface p-6 transition duration-300 hover:bg-surface-2"
                   >
                     <span className="font-display text-6xl font-bold leading-none text-primary/35">
                       {String(index + 1).padStart(2, "0")}
@@ -168,16 +161,18 @@ export default function Home() {
         </Container>
       </section>
 
-      <section id="event-flow" className="scroll-mt-24 bg-bg py-20 sm:py-28">
+      <section id="event-flow" className="scroll-mt-24 bg-bg py-20 md:py-32">
         <Container>
           <Reveal>
-            <div className="grid gap-8 lg:grid-cols-[0.28fr_0.72fr] lg:items-end">
-              <SectionNumber number="03" />
-              <SectionHeading
-                label={homeContent.flow.label}
-                title={homeContent.flow.title}
-                subtitle={homeContent.flow.description}
-              />
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-12">
+                <SectionNumber number="03" />
+                <SectionHeading
+                  label={homeContent.flow.label}
+                  title={homeContent.flow.title}
+                  subtitle={homeContent.flow.description}
+                />
+              </div>
             </div>
           </Reveal>
           <Reveal delay={0.12}>
@@ -186,19 +181,19 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden border-y border-border bg-primary-dark py-20 text-text sm:py-28">
+      <section className="relative overflow-hidden border-y border-border bg-primary-dark py-20 text-text md:py-32">
         <div className="absolute inset-0 line-field opacity-25" aria-hidden="true" />
         <Container className="relative">
-          <Reveal className="grid gap-10 lg:grid-cols-[1fr_0.42fr] lg:items-end">
-            <div>
+          <Reveal className="grid gap-12 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
               <p className="text-xs font-black uppercase tracking-[0.28em] text-accent">
                 {homeContent.finalCta.label}
               </p>
-              <h2 className="mt-5 max-w-5xl font-display text-[clamp(4.2rem,14vw,13rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-text">
+              <h2 className="mt-5 max-w-5xl font-display text-[clamp(3rem,8vw,8rem)] font-bold uppercase leading-[0.82] tracking-[-0.04em] text-text text-balance">
                 {homeContent.finalCta.title}
               </h2>
             </div>
-            <div className="border-l border-border pl-6">
+            <div className="border-l border-border pl-6 lg:col-span-5">
               <p className="mb-8 text-xl leading-8 text-accent-light">
                 {homeContent.finalCta.description}
               </p>

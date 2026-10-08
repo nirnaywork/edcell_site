@@ -46,7 +46,7 @@ export function Countdown({ targetDate }) {
         <p className="text-xs font-black uppercase tracking-[0.28em] text-accent">
           Countdown
         </p>
-        <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
+        <div className="mt-5 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-4">
           {units.map((unit) => (
             <div
               key={unit.label}

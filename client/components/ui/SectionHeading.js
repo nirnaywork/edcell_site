@@ -4,7 +4,7 @@ export function SectionHeading({ label, title, subtitle, centered = false }) {
       <p className="text-xs font-black uppercase tracking-[0.28em] text-accent">
         {label}
       </p>
-      <h2 className="mt-4 font-display text-[clamp(2.6rem,7vw,6.6rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-text text-balance">
+      <h2 className="mt-4 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-text text-balance">
         {title}
       </h2>
       {subtitle ? (

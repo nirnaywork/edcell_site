@@ -61,10 +61,10 @@ export function Navbar() {
           className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label="ED-Cell MECS home"
         >
-          <span className="flex h-11 w-11 items-center justify-center border border-primary-light bg-primary font-display text-xl font-bold uppercase text-text shadow-soft transition group-hover:bg-primary-light">
+          <span className="flex h-11 w-11 items-center justify-center border border-primary-light bg-primary font-display text-xl font-bold uppercase leading-none text-text shadow-soft transition group-hover:bg-primary-light">
             ED
           </span>
-          <span className="font-display text-xl font-bold uppercase tracking-tight text-text">
+          <span className="font-display text-xl font-bold uppercase leading-none tracking-tight text-text">
             {siteConfig.name}
           </span>
         </Link>

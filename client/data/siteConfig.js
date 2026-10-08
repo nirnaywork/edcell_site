@@ -1,8 +1,12 @@
 export const siteConfig = {
   name: "ED-Cell MECS",
   eventName: "E-Summit 2026",
-  eventDate: "2026-12-20T10:00:00+05:30",
-  registrationUrl: "#",
+  eventDate: "2026-10-29T00:00:00+05:30",
+  registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfZGAE9ojrAOJp4lz1EMsyCAmyPQn-1a7HjgasU5h6q8Aj2Lg/viewform?usp=publish-editor",
+  socialLinks: {
+    instagram: "https://www.instagram.com/edcmecs/",
+    linkedin: "https://www.linkedin.com/company/edcmecs"
+  },
   footerTagline: "Building entrepreneurial energy across MECS, one idea at a time.",
   copyright: "Copyright 2026 ED-Cell MECS. All rights reserved.",
   meta: {
@@ -14,10 +18,7 @@ export const siteConfig = {
 
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "E-Summit", href: "/e-summit" },
-  { label: "Past Events", href: "/past-events" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Core Team", href: "/core-team" },
+  { label: "ED-Cell Team", href: "/core-team" },
   { label: "Contact", href: "/contact" }
 ];
 
@@ -26,7 +27,7 @@ export const homeContent = {
     badge: "Upcoming",
     title: "E-Summit 2026",
     tagline: "Where ideas meet founders.",
-    eventLine: "Dates to be announced | MECS Campus",
+    eventLine: "29th, 30th, 31st October 2026 | MECS Campus",
     primaryCta: "Register Now",
     secondaryCta: "View Event Flow"
   },

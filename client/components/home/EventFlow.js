@@ -67,7 +67,7 @@ export function EventFlow() {
               onKeyDown={(event) => handleKeyDown(event, index)}
             >
               <span
-                className={`font-display text-5xl font-bold leading-none transition ${
+                className={`font-display text-3xl font-bold leading-none transition ${
                   selected ? "text-accent" : "text-border group-hover:text-primary-light"
                 }`}
               >
@@ -93,21 +93,21 @@ export function EventFlow() {
             id={`${tabId}-${active.id}-panel`}
             role="tabpanel"
             aria-labelledby={`${tabId}-${active.id}-tab`}
-            className="border border-border bg-surface p-5 shadow-lift sm:p-8 lg:p-10"
+            className="border border-border bg-surface p-5 shadow-lift sm:p-6 lg:p-8"
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: -14 }}
             transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="grid gap-6 border-b border-border pb-8 md:grid-cols-[9rem_1fr]">
-              <span className="font-display text-[clamp(5.5rem,14vw,10rem)] font-bold leading-none text-primary/35">
+              <span className="font-display text-[clamp(3.5rem,8vw,6rem)] font-bold leading-none text-primary/35">
                 0{activeIndex + 1}
               </span>
               <div className="self-end">
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-accent">
                   {active.label}
                 </p>
-                <h3 className="mt-3 font-display text-[clamp(2.2rem,6vw,5.2rem)] font-bold uppercase leading-[0.92] tracking-[-0.02em] text-text text-balance">
+                <h3 className="mt-3 font-display text-[clamp(1.5rem,4vw,3rem)] font-bold uppercase leading-[1.0] tracking-[-0.02em] text-text text-balance">
                   {active.title}
                 </h3>
               </div>
@@ -120,7 +120,7 @@ export function EventFlow() {
                   className="grid grid-cols-[6rem_1fr] gap-4 border-b border-border py-7 last:border-b-0 sm:grid-cols-[8rem_1fr] md:grid-cols-[10rem_1fr]"
                 >
                   <div className="relative">
-                    <span className="font-display text-2xl font-bold uppercase leading-none text-accent">
+                    <span className="font-display text-lg font-bold uppercase leading-none text-accent">
                       {item.time}
                     </span>
                     <span className="mt-3 hidden h-px w-16 bg-border md:block" />
@@ -131,7 +131,7 @@ export function EventFlow() {
                     <p className="text-xs font-black uppercase tracking-[0.2em] text-primary-light">
                       Step {String(index + 1).padStart(2, "0")}
                     </p>
-                    <h4 className="mt-2 font-display text-3xl font-semibold uppercase leading-tight text-text sm:text-4xl">
+                    <h4 className="mt-2 font-display text-xl font-semibold uppercase leading-tight text-text sm:text-2xl">
                       {item.title}
                     </h4>
                     {item.venue ? (

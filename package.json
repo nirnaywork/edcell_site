@@ -1,0 +1,12 @@
+{
+  "name": "ed-cell-mecs-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ED-Cell MECS website with E-Summit 2026 landing page.",
+  "scripts": {
+    "dev": "npm --prefix client run dev",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "install:all": "npm install --prefix client && npm install --prefix server"
+  }
+}

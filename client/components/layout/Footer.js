@@ -11,25 +11,27 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="bg-primary-dark text-surface">
-      <Container className="py-12">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr_0.7fr]">
+    <footer className="border-t border-border bg-dark text-text">
+      <Container className="py-14 sm:py-18">
+        <div className="grid gap-12 md:grid-cols-[1.15fr_0.75fr_0.6fr]">
           <div>
-            <h2 className="font-serif text-3xl font-bold">{siteConfig.name}</h2>
-            <p className="mt-4 max-w-md leading-7 text-accent-light">
+            <h2 className="font-display text-[clamp(3rem,8vw,7rem)] font-bold uppercase leading-none tracking-[-0.03em] text-text">
+              {siteConfig.name}
+            </h2>
+            <p className="mt-5 max-w-md leading-7 text-text-muted">
               {siteConfig.footerTagline}
             </p>
           </div>
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-accent">
+            <h3 className="text-xs font-black uppercase tracking-[0.28em] text-accent">
               Quick Links
             </h3>
-            <nav className="mt-4 grid gap-3" aria-label="Footer">
+            <nav className="mt-5 grid gap-3" aria-label="Footer">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-surface/80 transition hover:text-accent-light focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="w-max border-b border-transparent text-sm font-semibold text-text-muted transition hover:border-accent hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   {link.label}
                 </Link>
@@ -37,16 +39,16 @@ export function Footer() {
             </nav>
           </div>
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-accent">
+            <h3 className="text-xs font-black uppercase tracking-[0.28em] text-accent">
               Social
             </h3>
-            <div className="mt-4 flex gap-3">
+            <div className="mt-5 flex gap-3">
               {socials.map((item) => {
                 const Icon = item.icon;
                 return (
                   <span
                     key={item.label}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-surface/15 bg-surface/10 text-surface"
+                    className="inline-flex h-11 w-11 items-center justify-center border border-border bg-surface text-text-muted transition hover:border-accent hover:text-accent"
                     aria-label={item.label}
                     role="img"
                   >
@@ -57,7 +59,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 border-t border-surface/10 pt-6 text-sm text-surface/70">
+        <div className="mt-12 border-t border-border pt-6 text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">
           {siteConfig.copyright}
         </div>
       </Container>

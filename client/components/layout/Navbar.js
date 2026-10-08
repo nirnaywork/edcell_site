@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,6 +11,8 @@ import { navLinks, siteConfig } from "../../data/siteConfig";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const reduceMotion = useReducedMotion();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -34,18 +37,34 @@ export function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 18);
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-bg/92 backdrop-blur">
-      <Container className="flex h-[4.5rem] items-center justify-between py-3">
+    <header
+      className={`sticky top-0 z-50 border-b transition duration-300 ${
+        isScrolled
+          ? "border-border bg-bg/90 shadow-soft backdrop-blur-xl"
+          : "border-transparent bg-bg/65 backdrop-blur"
+      }`}
+    >
+      <Container className="flex h-[4.75rem] items-center justify-between py-3">
         <Link
           href="/"
-          className="flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           aria-label="ED-Cell MECS home"
         >
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary font-serif text-xl font-bold text-surface shadow-soft">
+          <span className="flex h-11 w-11 items-center justify-center border border-primary-light bg-primary font-display text-xl font-bold uppercase text-text shadow-soft transition group-hover:bg-primary-light">
             ED
           </span>
-          <span className="font-serif text-xl font-bold text-dark">
+          <span className="font-display text-xl font-bold uppercase tracking-tight text-text">
             {siteConfig.name}
           </span>
         </Link>
@@ -55,11 +74,12 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-semibold transition hover:text-primary focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                pathname === link.href ? "text-primary" : "text-text-muted"
+              className={`relative text-xs font-black uppercase tracking-[0.18em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                pathname === link.href ? "text-accent" : "text-text-muted hover:text-text"
               }`}
             >
               {link.label}
+              <span className="absolute -bottom-2 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 hover:scale-x-100" />
             </Link>
           ))}
         </nav>
@@ -72,7 +92,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface text-dark shadow-soft transition hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center border border-border bg-surface text-text shadow-soft transition hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:hidden"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -82,36 +102,43 @@ export function Navbar() {
         </button>
       </Container>
 
-      <div
-        className={`fixed inset-0 top-[4.5rem] z-40 bg-dark/40 transition-opacity duration-300 lg:hidden ${
-          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden="true"
-        onClick={() => setIsOpen(false)}
-      />
-      <aside
-        id="mobile-navigation"
-        className={`fixed right-0 top-[4.5rem] z-50 h-[calc(100svh-4.5rem)] w-full max-w-sm border-l border-border bg-surface p-6 shadow-lift transition-transform duration-300 lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <nav className="flex flex-col gap-2" aria-label="Mobile primary">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`rounded-xl px-4 py-3 text-base font-semibold transition hover:bg-tint focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
-                pathname === link.href ? "bg-tint text-primary" : "text-text"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <Button href={siteConfig.registrationUrl} variant="accent" className="mt-6 w-full">
-          Register
-        </Button>
-      </aside>
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.aside
+            id="mobile-navigation"
+            className="fixed inset-0 top-[4.75rem] z-50 border-t border-border bg-bg p-5 shadow-lift lg:hidden"
+            initial={reduceMotion ? false : { opacity: 0, y: -12 }}
+            animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -12 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <nav className="flex h-full flex-col justify-between" aria-label="Mobile primary">
+              <div className="grid gap-1">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={reduceMotion ? false : { opacity: 0, x: -18 }}
+                    animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+                    transition={{ duration: 0.32, delay: index * 0.045 }}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`block border-b border-border py-5 font-display text-[clamp(2.4rem,12vw,4.8rem)] font-bold uppercase leading-none tracking-[-0.02em] transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+                        pathname === link.href ? "text-accent" : "text-text"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+              <Button href={siteConfig.registrationUrl} variant="accent" className="mt-8 w-full">
+                Register
+              </Button>
+            </nav>
+          </motion.aside>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }

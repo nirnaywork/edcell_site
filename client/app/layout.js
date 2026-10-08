@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { Footer } from "../components/layout/Footer";
 import { Navbar } from "../components/layout/Navbar";
@@ -10,9 +10,10 @@ const inter = Inter({
   display: "swap"
 });
 
-const playfair = Playfair_Display({
+const oswald = Oswald({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-display",
+  weight: ["500", "600", "700"],
   display: "swap"
 });
 
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable}`}
+      className={`${inter.variable} ${oswald.variable}`}
       data-scroll-behavior="smooth"
     >
       <body className="min-h-screen font-sans antialiased">

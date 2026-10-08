@@ -2,21 +2,25 @@
 @config "../tailwind.config.js";
 
 :root {
-  --color-primary: #731919;
-  --color-primary-dark: #4A0F0F;
-  --color-primary-light: #9A2A2A;
-  --color-accent: #D4A24C;
-  --color-accent-light: #F3E3BF;
-  --color-bg: #FFF9F5;
-  --color-surface: #FFFFFF;
-  --color-tint: #F7E8E6;
-  --color-dark: #2A0A0A;
-  --color-text: #1F1212;
-  --color-text-muted: #6B5B5B;
-  --color-border: #E8D5D2;
-  --color-success: #2E7D4F;
-  --color-warning: #C98A1B;
-  --color-error: #D13B3B;
+  --color-primary: #8F2424;
+  --color-primary-dark: #3A0A0A;
+  --color-primary-light: #B94734;
+  --color-accent: #D8A64E;
+  --color-accent-light: #F2D38C;
+  --color-bg: #120B0B;
+  --color-surface: #1B1111;
+  --color-surface-2: #261414;
+  --color-tint: #3B1715;
+  --color-dark: #080606;
+  --color-text: #F4ECE2;
+  --color-text-muted: #B8A8A0;
+  --color-border: #4A302C;
+  --color-success: #65B889;
+  --color-warning: #E0A543;
+  --color-error: #E15C53;
+  --color-grid: #2A1A18;
+  --color-overlay: #0D0808;
+  --color-selection: #5C2A1D;
 }
 
 * {
@@ -25,12 +29,29 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-bg);
 }
 
 body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-text);
+  min-width: 320px;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  pointer-events: none;
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.045;
+  mix-blend-mode: screen;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--color-text) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, var(--color-text) 0 1px, transparent 1px);
+  background-size: 26px 26px, 34px 34px;
 }
 
 a {
@@ -48,37 +69,60 @@ select {
 }
 
 ::selection {
-  background: var(--color-accent-light);
-  color: var(--color-dark);
+  background: var(--color-selection);
+  color: var(--color-text);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border: 3px solid var(--color-bg);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
 }
 
 @layer utilities {
-  .animate-on-view {
-    animation: fade-slide-up 700ms ease both;
+  .text-balance {
+    text-wrap: balance;
   }
 
-  .delay-100 {
-    animation-delay: 100ms;
+  .text-pretty {
+    text-wrap: pretty;
   }
 
-  .delay-200 {
-    animation-delay: 200ms;
+  .grain-mask {
+    mask-image: linear-gradient(to bottom, black, transparent 92%);
   }
 
-  .delay-300 {
-    animation-delay: 300ms;
+  .ticker-track {
+    animation: ticker 34s linear infinite;
+  }
+
+  .line-field {
+    background-image:
+      linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
+    background-size: 88px 88px;
   }
 }
 
-@keyframes fade-slide-up {
+@keyframes ticker {
   from {
-    opacity: 0;
-    transform: translateY(18px);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -90,5 +134,9 @@ select {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .ticker-track {
+    animation: none !important;
   }
 }

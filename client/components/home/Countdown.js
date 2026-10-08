@@ -39,23 +39,23 @@ export function Countdown({ targetDate }) {
 
   return (
     <section
-      className="rounded-xl border border-surface/15 bg-surface/10 p-5 shadow-lift backdrop-blur sm:p-6"
+      className="border border-border bg-surface/80 p-4 shadow-lift backdrop-blur sm:p-5"
       aria-label="Countdown to E-Summit 2026"
     >
-      <div className="rounded-xl border border-accent/25 bg-dark/30 p-6">
-        <p className="text-sm font-bold uppercase tracking-[0.18em] text-accent-light">
+      <div className="border border-border bg-dark/45 p-4 sm:p-6">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-accent">
           Countdown
         </p>
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
           {units.map((unit) => (
             <div
               key={unit.label}
-              className="rounded-xl border border-surface/10 bg-surface/10 p-4 text-center"
+              className="bg-surface-2 p-4 text-center sm:p-5"
             >
-              <p className="font-serif text-4xl font-bold text-surface">
+              <p className="font-display text-[clamp(2.3rem,8vw,4.6rem)] font-bold leading-none tracking-[-0.03em] text-text">
                 {unit.value === null ? "--" : String(unit.value).padStart(2, "0")}
               </p>
-              <p className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-surface/70">
+              <p className="mt-2 text-[0.65rem] font-black uppercase tracking-[0.18em] text-text-muted">
                 {unit.label}
               </p>
             </div>
